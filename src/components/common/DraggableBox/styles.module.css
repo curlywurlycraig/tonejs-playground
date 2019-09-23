@@ -1,0 +1,12 @@
+.container {
+    position: fixed;
+}
+
+.topBar {
+    height: 15px;
+    border-bottom: 2px solid black;
+}
+
+.title {
+    margin: 5px 0;
+}

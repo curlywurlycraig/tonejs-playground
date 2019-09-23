@@ -3,11 +3,14 @@ import Tone from 'tone';
 import './App.css';
 import Slider from './components/common/Slider/input';
 import Checkbox from './components/common/Checkbox';
+import DraggableBox from './components/common/DraggableBox';
+import MasterNode from './components/nodes/MasterNode';
 
 function App() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [cutoff, setCutoff] = useState(100);
   const [volume, setVolume] = useState(100);
+  const [examplePos, setExamplePos] = useState({xPos: 10, yPos: 10});
   const filterRef = useRef(null);
   const masterRef = useRef(null);
 
@@ -49,6 +52,7 @@ function App() {
       <Checkbox label="Play sound" checked={isEnabled} onChange={e => updatePlaying(e.target.checked)} />
       <Slider label="Cutoff" value={cutoff} min={0} max={100} onChange={e => updateCutoff(e.target.value)} />
       <Slider label="Volume" value={volume} min={0} max={100} onChange={e => updateVolume(e.target.value)} />
+      <MasterNode inputs={[]} />
     </div>
   );
 }
