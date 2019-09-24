@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Tone from 'tone';
 import DraggableBox from '../../common/DraggableBox';
 
-const MasterNode = ({ inputs }) => {
+const MasterNode = ({inputs}) => {
   const [currentInputs, setCurrentInputs] = useState([]);
+  const nodeRef = useRef(null);
+
+  useEffect(() => {
+    nodeRef.current = Tone.Master;
+    console.log('I have set node ref to master hehe');
+  }, [nodeRef]);
 
   useEffect(() => {
     const newInputs = inputs.filter(input => !currentInputs.includes(input));
@@ -10,13 +17,22 @@ const MasterNode = ({ inputs }) => {
     const intersectInputs = currentInputs.filter(input => inputs.includes(input));
 
     if (newInputs.length || removedInputs.length) {
+      newInputs.forEach(newInput => {
+        newInput.connect(nodeRef.current);
+      });
+
+      removedInputs.forEach(removedInput => {
+        removedInput.disconnect(nodeRef.current);
+      });
+
       setCurrentInputs([...intersectInputs, ...newInputs]);
     }
-  }, [inputs, currentInputs]);
+  }, [inputs, currentInputs, nodeRef]);
 
   return (
     <DraggableBox title="Master">
       <p>Icon would go here.</p>
+      <p>So would volume slider.</p>
     </DraggableBox>
   )
 };
