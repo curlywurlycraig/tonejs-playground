@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import MasterNode from './components/nodes/MasterNode';
 import SynthNode from './components/nodes/SynthNode';
 
 function App() {
+  const [selectedNode, setSelectedNode] = useState(null);
+  const [masterInputs, setMasterInputs] = useState([]);
+
+  const connectSelectedNodeToInput = () => {
+    setMasterInputs([...masterInputs, selectedNode]);
+    setSelectedNode(null);
+  };
+
   return (
     <div className="App">
-      <SynthNode activeOutputs={[]} onStartOutputDrag={e => console.log('starting output drag', e.clientX)} />
-      <MasterNode inputs={[]} />
+      <SynthNode activeOutputs={[]} onClickOutput={setSelectedNode} />
+      <MasterNode inputs={masterInputs} onClickInput={connectSelectedNodeToInput} />
     </div>
   );
 }
