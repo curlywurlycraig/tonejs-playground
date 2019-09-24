@@ -8,7 +8,6 @@ const MasterNode = ({inputs}) => {
 
   useEffect(() => {
     nodeRef.current = Tone.Master;
-    console.log('I have set node ref to master hehe');
   }, [nodeRef]);
 
   useEffect(() => {
