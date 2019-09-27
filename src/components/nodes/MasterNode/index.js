@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Tone from 'tone';
 import DraggableBox from '../../common/DraggableBox';
+import OutputInput from '../../common/OutputInput';
 
 const MasterNode = ({inputs, onClickInput}) => {
   const [currentInputs, setCurrentInputs] = useState([]);
@@ -32,7 +33,7 @@ const MasterNode = ({inputs, onClickInput}) => {
     <DraggableBox title="Master">
       <p>Icon would go here.</p>
       <p>So would volume slider.</p>
-      <button onClick={onClickInput}>o</button>
+      <OutputInput onClick={onClickInput} isInput />
     </DraggableBox>
   )
 };

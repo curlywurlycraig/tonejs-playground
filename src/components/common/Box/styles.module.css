@@ -2,4 +2,5 @@
     border: 2px solid black;
     box-shadow: 5px 5px 0 black;
     display: inline-block;
+    overflow: hidden;
 }

@@ -8,6 +8,10 @@ function App() {
   const [masterInputs, setMasterInputs] = useState([]);
 
   const connectSelectedNodeToInput = () => {
+    if (selectedNode === null) {
+      return;
+    }
+
     setMasterInputs([...masterInputs, selectedNode]);
     setSelectedNode(null);
   };
