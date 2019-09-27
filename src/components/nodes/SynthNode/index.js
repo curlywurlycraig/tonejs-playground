@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Tone from 'tone';
 import DraggableBox from '../../common/DraggableBox';
+import OutputInput from '../../common/OutputInput';
 
 const SynthNode = ({ activeOutputs, onClickOutput }) => {
   const nodeRef = useRef(null);
@@ -16,7 +17,7 @@ const SynthNode = ({ activeOutputs, onClickOutput }) => {
   return (
     <DraggableBox title="Master">
       <p>Synth controls go here.</p>
-      <button onClick={() => onClickOutput(nodeRef.current)}>O</button>
+      <OutputInput onClick={() => onClickOutput(nodeRef.current)}/>
     </DraggableBox>
   )
 };
