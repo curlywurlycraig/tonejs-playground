@@ -9,7 +9,7 @@ const DraggableBox = ({ initialXPos, initialYPos, children, title }) => {
   return (
     <DraggableCore
       handle={`.${styles.topBar}`}
-      onDrag={e => setPos({x: e.clientX, y: e.clientY})}>
+      onDrag={(e, data) => setPos({x: pos.x + data.deltaX, y: pos.y + data.deltaY})}>
       <div className={styles.container} style={{left: pos.x, top: pos.y}}>
         <Box>
           <div className={styles.topBar}><p className={styles.title}>{ title }</p></div>

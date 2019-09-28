@@ -1,33 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Tone from 'tone';
 import DraggableBox from '../../common/DraggableBox';
 import OutputInput from '../../common/OutputInput';
+import { useNode } from '../../../hooks/node';
 
 const MasterNode = ({inputs, onClickInput}) => {
-  const [currentInputs, setCurrentInputs] = useState([]);
-  const nodeRef = useRef(null);
-
-  useEffect(() => {
-    nodeRef.current = Tone.Master;
-  }, [nodeRef]);
-
-  useEffect(() => {
-    const newInputs = inputs.filter(input => !currentInputs.includes(input));
-    const removedInputs = currentInputs.filter(input => !inputs.includes(input));
-    const intersectInputs = currentInputs.filter(input => inputs.includes(input));
-
-    if (newInputs.length || removedInputs.length) {
-      newInputs.forEach(newInput => {
-        newInput.connect(nodeRef.current);
-      });
-
-      removedInputs.forEach(removedInput => {
-        removedInput.disconnect(nodeRef.current);
-      });
-
-      setCurrentInputs([...intersectInputs, ...newInputs]);
-    }
-  }, [inputs, currentInputs, nodeRef]);
+  const nodeRef = useNode(Tone.Master, inputs);
 
   return (
     <DraggableBox title="Master">
