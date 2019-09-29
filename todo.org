@@ -12,3 +12,4 @@ In which case it should be controlled.
 * TODO Draw edges between connected nodes
 * TODO Fix proptypes and default props
 * TODO Introduce eslint
+* TODO Add poly synth

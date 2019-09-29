@@ -5,7 +5,7 @@ import NodeContainer from '../../common/NodeContainer';
 import Slider from '../../common/Slider';
 
 const LimiterNode = ({ inputs, onClickInput, onClickOutput }) => {
-  const [threshold, setThreshold] = useState(-6);
+  const [threshold, setThreshold] = useState(-12);
   const nodeRef = useNode(new Tone.Limiter(threshold), inputs);
 
   useEffect(() => {
