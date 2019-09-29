@@ -1,9 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    max-width: 200px;
-}
-
-.outputsContainer {
-
+.typeSelectorContainer {
+    padding: 10px;
 }

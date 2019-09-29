@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container button {
+    width: 40px;
+}
+
+.container button:enabled {
+    opacity: 0.3;
+}

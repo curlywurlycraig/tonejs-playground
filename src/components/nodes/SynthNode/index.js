@@ -4,6 +4,8 @@ import NodeContainer from '../../common/NodeContainer';
 import { useNode } from '../../../hooks/node';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
 import { useInput } from '../../../hooks/input';
+import OscillatorTypeSelector from '../../common/OscillatorTypeSelector';
+import styles from './styles.module.css';
 
 const SynthNode = ({ onClickOutput }) => {
   const nodeRef = useNode(new Tone.Synth(), []);
@@ -17,6 +19,8 @@ const SynthNode = ({ onClickOutput }) => {
     release: 1
   });
 
+  const [oscillatorType, setOscillatorType] = useState('sine');
+
   useEffect(() => {
     nodeRef.current.envelope.attack = envelope.attack;
     nodeRef.current.envelope.decay = envelope.decay;
@@ -24,8 +28,21 @@ const SynthNode = ({ onClickOutput }) => {
     nodeRef.current.envelope.release = envelope.release;
   }, [nodeRef, envelope]);
 
+  useEffect(() => {
+    nodeRef.current.oscillator.type = oscillatorType;
+  }, [oscillatorType, nodeRef]);
+
   return (
-    <NodeContainer title="Synth" onClickOutput={() => onClickOutput(nodeRef.current)}>
+    <NodeContainer
+      title="Synth"
+      onClickOutput={() => onClickOutput(nodeRef.current)}
+    >
+      <div className={styles.typeSelectorContainer}>
+        <OscillatorTypeSelector
+          type={oscillatorType}
+          onChange={setOscillatorType}
+        />
+      </div>
       <EnvelopeEditor envelope={envelope} onChange={setEnvelope} />
     </NodeContainer>
   );

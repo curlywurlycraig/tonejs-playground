@@ -1,7 +1,7 @@
 * TODO Add icon for useInput
+* TODO Fix up storybook
+* TODO Add commit hooks for storybook snapshots, eslint, and prettier
 * TODO Fix styles
-** TODO Position of inputs and outputs
-** TODO Appearance of inputs and outputs
 ** TODO Fonts
 ** TODO Labels of sliders
 ** TODO Margins
@@ -9,7 +9,6 @@
   Probably want to keep the actual tonejs ref in the node itself
 In which case it should be controlled.
 * TODO Add icon for muted master
-* TODO Add waveform picker for synth
 * TODO Draw edges between connected nodes
 * TODO Fix proptypes and default props
 * TODO Introduce eslint
