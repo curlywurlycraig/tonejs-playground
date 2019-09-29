@@ -18,7 +18,7 @@ const DelayNode = ({ inputs, onClickInput, onClickOutput }) => {
 
   return (
     <DraggableBox title="Delay">
-      <OutputInput onClick={onClickInput} isInput />
+      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
       <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
       <Slider
         min={0.1}

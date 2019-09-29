@@ -5,6 +5,7 @@ export const useNode = (node, inputs) => {
   const nodeRef = useRef(node);
 
   useEffect(() => {
+    console.log('connecting em up ', inputs);
     const newInputs = inputs.filter(input => !currentInputs.includes(input));
     const removedInputs = currentInputs.filter(
       input => !inputs.includes(input)

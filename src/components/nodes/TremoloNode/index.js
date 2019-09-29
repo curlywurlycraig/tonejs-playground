@@ -18,7 +18,7 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
 
   return (
     <DraggableBox title="Tremolo">
-      <OutputInput onClick={onClickInput} isInput />
+      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
       <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
       <Slider
         min={1}

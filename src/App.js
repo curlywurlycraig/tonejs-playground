@@ -1,54 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import Tone from 'tone';
 import './App.css';
-import MasterNode from './components/nodes/MasterNode';
-import SynthNode from './components/nodes/SynthNode';
-import TremoloNode from './components/nodes/TremoloNode';
-import DelayNode from './components/nodes/DelayNode';
+import { createMasterNode } from './util/nodes';
+import Toolbar from './components/common/Toolbar';
 
 function App() {
-  useEffect(() => {
-    Tone.context.lookAhead = 0.005;
-  }, []);
-
   const [selectedNode, setSelectedNode] = useState(null);
-  const [masterInputs, setMasterInputs] = useState([]);
-  const [tremoloInputs, setTremoloInputs] = useState([]);
-  const [delayInputs, setDelayInputs] = useState([]);
+  const [nodes, setNodes] = useState([]);
 
-  const connectSelectedNodeToInput = () => {
+  const addNode = node => {
+    setNodes([
+      ...nodes,
+      node
+    ])
+  };
+
+  const connectSelectedNodeToNode = node => {
     if (selectedNode === null) {
       return;
     }
 
-    setMasterInputs([...masterInputs, selectedNode]);
+    setNodes(nodes.map(iterNode => {
+      if (iterNode === node) {
+        return {
+          ...iterNode,
+          inputs: [...iterNode.inputs, selectedNode]
+        };
+      } else {
+        return iterNode
+      }
+    }));
+
     setSelectedNode(null);
   };
 
-  const connectSelectedNodeToTremoloInput = () => {
-    if (selectedNode === null) {
-      return;
-    }
-
-    setTremoloInputs([...tremoloInputs, selectedNode]);
-    setSelectedNode(null);
-  };
-
-  const connectSelectedNodeToDelayInput = () => {
-    if (selectedNode === null) {
-      return;
-    }
-
-    setDelayInputs([...delayInputs, selectedNode]);
-    setSelectedNode(null);
+  const renderNodes = () => {
+    return nodes.map(node => node.render({
+      inputs: node.inputs,
+      onClickInput: tone => connectSelectedNodeToNode(node),
+      onClickOutput: tone => setSelectedNode(tone),
+      xPos: node.xPos,
+      yPos: node.yPos
+    }))
   };
 
   return (
     <div className="App">
-      <SynthNode activeOutputs={[]} onClickOutput={setSelectedNode} />
-      <MasterNode inputs={masterInputs} onClickInput={connectSelectedNodeToInput} />
-      <TremoloNode inputs={tremoloInputs} onClickInput={connectSelectedNodeToTremoloInput} onClickOutput={setSelectedNode} />
-      <DelayNode inputs={delayInputs} onClickInput={connectSelectedNodeToDelayInput} onClickOutput={setSelectedNode} />
+      <Toolbar onAddNode={addNode} />
+      { renderNodes() }
       {/*<svg viewBox></svg>*/}
     </div>
   );

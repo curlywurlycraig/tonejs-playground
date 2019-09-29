@@ -30,7 +30,7 @@ const MasterNode = ({ inputs, onClickInput }) => {
         onChange={e => setVolume(e.target.value)}
         label="Volume"
       />
-      <OutputInput onClick={onClickInput} isInput />
+      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
     </DraggableBox>
   );
 };

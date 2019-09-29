@@ -7,7 +7,7 @@ import { useNode } from '../../../hooks/node';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
 import { useInput } from '../../../hooks/input';
 
-const SynthNode = ({ activeOutputs, onClickOutput }) => {
+const SynthNode = ({ onClickOutput }) => {
   const nodeRef = useNode(new Tone.Synth(), []);
 
   useInput(nodeRef);
