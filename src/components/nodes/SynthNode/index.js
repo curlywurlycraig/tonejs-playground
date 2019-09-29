@@ -19,7 +19,7 @@ const SynthNode = ({ activeOutputs, onClickOutput }) => {
 
   useEffect(() => {
     setInterval(() => {
-      nodeRef.current.triggerAttackRelease("C4", "8n");
+      nodeRef.current.triggerAttackRelease('C4', '8n');
     }, 2000);
   }, [nodeRef]);
 
@@ -35,11 +35,11 @@ const SynthNode = ({ activeOutputs, onClickOutput }) => {
       <div className={styles.container}>
         <EnvelopeEditor envelope={envelope} onChange={setEnvelope} />
         <div className={styles.outputsContainer}>
-          <OutputInput onClick={() => onClickOutput(nodeRef.current)}/>
+          <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
         </div>
       </div>
     </DraggableBox>
-  )
+  );
 };
 
 SynthNode.defaultProps = {

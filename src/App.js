@@ -14,8 +14,6 @@ function App() {
       return;
     }
 
-    console.log("connecting to master: ", selectedNode);
-
     setMasterInputs([...masterInputs, selectedNode]);
     setSelectedNode(null);
   };

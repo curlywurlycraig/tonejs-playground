@@ -6,7 +6,7 @@ import { useNode } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
 import Slider from '../../common/Slider';
 
-const MasterNode = ({inputs, onClickInput}) => {
+const MasterNode = ({ inputs, onClickInput }) => {
   const [volume, setVolume] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const nodeRef = useNode(Tone.Master, inputs);
@@ -18,11 +18,20 @@ const MasterNode = ({inputs, onClickInput}) => {
 
   return (
     <DraggableBox title="Master">
-      <Checkbox checked={isMuted} onChange={() => setIsMuted(!isMuted)} label="Muted" />
-      <Slider min={-30} max={0} onChange={e => setVolume(e.target.value)} label="Volume" />
+      <Checkbox
+        checked={isMuted}
+        onChange={() => setIsMuted(!isMuted)}
+        label="Muted"
+      />
+      <Slider
+        min={-30}
+        max={0}
+        onChange={e => setVolume(e.target.value)}
+        label="Volume"
+      />
       <OutputInput onClick={onClickInput} isInput />
     </DraggableBox>
-  )
+  );
 };
 
 MasterNode.defaultProps = {

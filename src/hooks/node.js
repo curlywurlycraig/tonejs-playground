@@ -6,8 +6,12 @@ export const useNode = (node, inputs) => {
 
   useEffect(() => {
     const newInputs = inputs.filter(input => !currentInputs.includes(input));
-    const removedInputs = currentInputs.filter(input => !inputs.includes(input));
-    const intersectInputs = currentInputs.filter(input => inputs.includes(input));
+    const removedInputs = currentInputs.filter(
+      input => !inputs.includes(input)
+    );
+    const intersectInputs = currentInputs.filter(input =>
+      inputs.includes(input)
+    );
 
     if (newInputs.length || removedInputs.length) {
       newInputs.forEach(newInput => {

@@ -4,19 +4,12 @@ import DraggableBox from './index';
 
 storiesOf('common/DraggableBox', module)
   .add('default', () => (
-    <DraggableBox
-      initialXPos={10}
-      initialYPos={10}
-    >
+    <DraggableBox initialXPos={10} initialYPos={10}>
       <p>Example content</p>
     </DraggableBox>
   ))
   .add('with title', () => (
-    <DraggableBox
-      initialXPos={10}
-      initialYPos={10}
-      title="Example title"
-    >
+    <DraggableBox initialXPos={10} initialYPos={10} title="Example title">
       <p>Example content</p>
     </DraggableBox>
   ));

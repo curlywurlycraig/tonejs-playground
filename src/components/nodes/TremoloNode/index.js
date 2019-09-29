@@ -14,16 +14,29 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
   useEffect(() => {
     nodeRef.current.frequency.value = frequency;
     nodeRef.current.depth.value = depth;
-    console.log("frequency is ", frequency);
-    console.log("depth is ", depth);
   }, [nodeRef, frequency, depth]);
 
-  return <DraggableBox title="Tremolo">
-    <OutputInput onClick={onClickInput} isInput />
-    <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
-    <Slider min={1} max={10} value={frequency} onChange={e => setFrequency(e.target.value)} label="Frequency" />
-    <Slider min={0.1} max={1} step={0.1} value={depth} onChange={e => setDepth(e.target.value)} label="Depth" />
-  </DraggableBox>
+  return (
+    <DraggableBox title="Tremolo">
+      <OutputInput onClick={onClickInput} isInput />
+      <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
+      <Slider
+        min={1}
+        max={10}
+        value={frequency}
+        onChange={e => setFrequency(e.target.value)}
+        label="Frequency"
+      />
+      <Slider
+        min={0.1}
+        max={1}
+        step={0.1}
+        value={depth}
+        onChange={e => setDepth(e.target.value)}
+        label="Depth"
+      />
+    </DraggableBox>
+  );
 };
 
 export default TremoloNode;
