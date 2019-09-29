@@ -4,7 +4,7 @@ import DraggableBox from '../../common/DraggableBox';
 import OutputInput from '../../common/OutputInput';
 import { useNode } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
-import Slider from '../../common/Slider/input';
+import Slider from '../../common/Slider';
 
 const MasterNode = ({inputs, onClickInput}) => {
   const [volume, setVolume] = useState(0);

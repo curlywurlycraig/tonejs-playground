@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <SynthNode activeOutputs={[]} onClickOutput={setSelectedNode} />
       <MasterNode inputs={masterInputs} onClickInput={connectSelectedNodeToInput} />
-      <svg viewBox></svg>
+      {/*<svg viewBox></svg>*/}
     </div>
   );
 }
