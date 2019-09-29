@@ -11,3 +11,5 @@ In which case it should be controlled.
 * TODO Add icon for muted master
 * TODO Add waveform picker for synth
 * TODO Draw edges between connected nodes
+* TODO Fix proptypes and default props
+* TODO Introduce eslint

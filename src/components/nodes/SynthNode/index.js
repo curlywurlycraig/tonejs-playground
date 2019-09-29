@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import DraggableBox from '../../common/DraggableBox';
-import OutputInput from '../../common/OutputInput';
-import styles from './styles.module.css';
+import NodeContainer from '../../common/NodeContainer';
 import { useNode } from '../../../hooks/node';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
 import { useInput } from '../../../hooks/input';
@@ -27,14 +25,9 @@ const SynthNode = ({ onClickOutput }) => {
   }, [nodeRef, envelope]);
 
   return (
-    <DraggableBox title="Synth">
-      <div className={styles.container}>
-        <EnvelopeEditor envelope={envelope} onChange={setEnvelope} />
-        <div className={styles.outputsContainer}>
-          <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
-        </div>
-      </div>
-    </DraggableBox>
+    <NodeContainer title="Synth" onClickOutput={() => onClickOutput(nodeRef.current)}>
+      <EnvelopeEditor envelope={envelope} onChange={setEnvelope} />
+    </NodeContainer>
   );
 };
 

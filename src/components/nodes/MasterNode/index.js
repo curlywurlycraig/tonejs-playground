@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import DraggableBox from '../../common/DraggableBox';
-import OutputInput from '../../common/OutputInput';
+import NodeContainer from '../../common/NodeContainer';
 import { useNode } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
 import Slider from '../../common/Slider';
@@ -17,7 +16,10 @@ const MasterNode = ({ inputs, onClickInput }) => {
   }, [volume, isMuted, nodeRef]);
 
   return (
-    <DraggableBox title="Master">
+    <NodeContainer
+      title="Master"
+      onClickInput={() => onClickInput(nodeRef.current)}
+    >
       <Checkbox
         checked={isMuted}
         onChange={() => setIsMuted(!isMuted)}
@@ -30,8 +32,7 @@ const MasterNode = ({ inputs, onClickInput }) => {
         onChange={e => setVolume(e.target.value)}
         label="Volume"
       />
-      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
-    </DraggableBox>
+    </NodeContainer>
   );
 };
 

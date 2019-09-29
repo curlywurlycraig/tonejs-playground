@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { createMasterNode } from './util/nodes';
 import Toolbar from './components/common/Toolbar';
 
 function App() {
@@ -15,6 +14,7 @@ function App() {
   };
 
   const connectSelectedNodeToNode = node => {
+    console.log('collecting ', selectedNode, ' to ', node);
     if (selectedNode === null) {
       return;
     }
@@ -37,7 +37,7 @@ function App() {
     return nodes.map(node => node.render({
       inputs: node.inputs,
       onClickInput: tone => connectSelectedNodeToNode(node),
-      onClickOutput: tone => setSelectedNode(tone),
+      onClickOutput: tone => { console.log('setting selected node ', tone); setSelectedNode(tone) },
       xPos: node.xPos,
       yPos: node.yPos
     }))

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import { useNode } from '../../../hooks/node';
-import DraggableBox from '../../common/DraggableBox';
+import NodeContainer from '../../common/NodeContainer';
 import OutputInput from '../../common/OutputInput';
 import Slider from '../../common/Slider';
 
@@ -17,9 +17,11 @@ const DelayNode = ({ inputs, onClickInput, onClickOutput }) => {
   }, [nodeRef, time, feedback]);
 
   return (
-    <DraggableBox title="Delay">
-      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
-      <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
+    <NodeContainer
+      title="Delay"
+      onClickOutput={() => onClickOutput(nodeRef.current)}
+      onClickInput={() => onClickInput(nodeRef.current)}
+    >
       <Slider
         min={0.1}
         max={1}
@@ -36,7 +38,7 @@ const DelayNode = ({ inputs, onClickInput, onClickOutput }) => {
         onChange={e => setFeedback(e.target.value)}
         label="Feedback"
       />
-    </DraggableBox>
+    </NodeContainer>
   );
 };
 

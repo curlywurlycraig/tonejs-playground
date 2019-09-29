@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import { useNode } from '../../../hooks/node';
-import DraggableBox from '../../common/DraggableBox';
+import NodeContainer from '../../common/NodeContainer';
 import OutputInput from '../../common/OutputInput';
 import Slider from '../../common/Slider';
 
@@ -17,7 +17,7 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
   }, [nodeRef, frequency, depth]);
 
   return (
-    <DraggableBox title="Tremolo">
+    <NodeContainer title="Tremolo">
       <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
       <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
       <Slider
@@ -35,7 +35,7 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
         onChange={e => setDepth(e.target.value)}
         label="Depth"
       />
-    </DraggableBox>
+    </NodeContainer>
   );
 };
 
