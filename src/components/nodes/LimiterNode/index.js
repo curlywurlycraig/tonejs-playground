@@ -22,6 +22,7 @@ const LimiterNode = ({ inputs, onClickInput, onClickOutput }) => {
         min={-12}
         max={0}
         step={0.1}
+        value={threshold}
         onChange={e => setThreshold(e.target.value)}
       />
     </NodeContainer>

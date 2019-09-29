@@ -8,7 +8,7 @@ import OscillatorTypeSelector from '../../common/OscillatorTypeSelector';
 import styles from './styles.module.css';
 
 const SynthNode = ({ onClickOutput }) => {
-  const nodeRef = useNode(new Tone.Synth(), []);
+  const nodeRef = useNode(new Tone.Synth({ volume: -10 }), []);
 
   useInput(nodeRef);
 
