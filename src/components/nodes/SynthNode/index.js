@@ -4,11 +4,13 @@ import DraggableBox from '../../common/DraggableBox';
 import OutputInput from '../../common/OutputInput';
 import styles from './styles.module.css';
 import { useNode } from '../../../hooks/node';
-import Slider from '../../common/Slider';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
+import { useInput } from '../../../hooks/input';
 
 const SynthNode = ({ activeOutputs, onClickOutput }) => {
   const nodeRef = useNode(new Tone.Synth(), []);
+
+  useInput(nodeRef);
 
   const [envelope, setEnvelope] = useState({
     attack: 0.005,
@@ -16,12 +18,6 @@ const SynthNode = ({ activeOutputs, onClickOutput }) => {
     sustain: 0.3,
     release: 1
   });
-
-  useEffect(() => {
-    setInterval(() => {
-      nodeRef.current.triggerAttackRelease('C4', '8n');
-    }, 2000);
-  }, [nodeRef]);
 
   useEffect(() => {
     nodeRef.current.envelope.attack = envelope.attack;

@@ -3,10 +3,11 @@
 }
 
 .topBar {
-    height: 15px;
     border-bottom: 2px solid black;
+    padding-left: 10px;
 }
 
 .title {
     margin: 5px 0;
+    text-align: left;
 }

@@ -24,6 +24,7 @@ const MasterNode = ({ inputs, onClickInput }) => {
         label="Muted"
       />
       <Slider
+        value={volume}
         min={-30}
         max={0}
         onChange={e => setVolume(e.target.value)}

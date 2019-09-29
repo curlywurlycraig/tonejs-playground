@@ -1,0 +1,11 @@
+* TODO Add keyboard/midi controlled ability to synths and other sources
+* TODO Fix styles
+** TODO Position of inputs and outputs
+** TODO Appearance of inputs and outputs
+** TODO Fonts
+** TODO Labels of sliders
+** TODO Margins
+* TODO Genericise handling of nodes in the main app
+* TODO Add icon for muted master
+* TODO Add waveform picker for synth
+* TODO Draw edges between connected nodes
