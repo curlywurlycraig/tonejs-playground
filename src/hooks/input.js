@@ -27,18 +27,14 @@ export const useInput = nodeRef => {
       if (e.repeat) {
         return;
       }
-      
+
       if (keyMap[e.key]) {
         nodeRef.current.triggerAttack(keyMap[e.key], Tone.context.currentTime);
       }
-
-      console.log('key down ', e);
     };
 
     const onKeyUp = e => {
-      console.log('key up ', e);
       nodeRef.current.triggerRelease(Tone.context.currentTime);
-
     };
 
     document.addEventListener('keydown', onKeyDown);
@@ -48,5 +44,5 @@ export const useInput = nodeRef => {
       document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('keyup', onKeyUp);
     }
-  }, []);
+  }, [nodeRef]);
 };
