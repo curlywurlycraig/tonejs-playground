@@ -6,6 +6,8 @@
 ** TODO Labels of sliders
 ** TODO Margins
 * TODO Improve genericisation approach
+  Probably want to keep the actual tonejs ref in the node itself
+In which case it should be controlled.
 * TODO Add icon for muted master
 * TODO Add waveform picker for synth
 * TODO Draw edges between connected nodes
