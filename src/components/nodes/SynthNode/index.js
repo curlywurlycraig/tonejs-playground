@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import NodeContainer from '../../common/NodeContainer';
 import { useNode } from '../../../hooks/node';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
 import { useInput } from '../../../hooks/input';
 import OscillatorTypeSelector from '../../common/OscillatorTypeSelector';
 import styles from './styles.module.css';
 
-const SynthNode = ({ onClickOutput, ...nodeProps }) => {
-  const nodeRef = useNode(new Tone.Synth({ volume: -10 }), nodeProps);
+const SynthNode = nodeProps => {
+  const [nodeRef, Container] = useNode(new Tone.Synth({ volume: -10 }), nodeProps);
 
   useInput(nodeRef);
 
@@ -33,10 +32,7 @@ const SynthNode = ({ onClickOutput, ...nodeProps }) => {
   }, [oscillatorType, nodeRef]);
 
   return (
-    <NodeContainer
-      title="Synth"
-      onClickOutput={() => onClickOutput(nodeRef.current)}
-    >
+    <Container>
       <div className={styles.typeSelectorContainer}>
         <OscillatorTypeSelector
           type={oscillatorType}
@@ -44,7 +40,7 @@ const SynthNode = ({ onClickOutput, ...nodeProps }) => {
         />
       </div>
       <EnvelopeEditor envelope={envelope} onChange={setEnvelope} />
-    </NodeContainer>
+    </Container>
   );
 };
 

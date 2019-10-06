@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import { useNode } from '../../../hooks/node';
-import NodeContainer from '../../common/NodeContainer';
 import Slider from '../../common/Slider';
 
-const LimiterNode = ({ onClickInput, onClickOutput, ...nodeProps }) => {
+const LimiterNode = (nodeProps) => {
   const [threshold, setThreshold] = useState(-12);
-  const nodeRef = useNode(new Tone.Limiter(threshold), nodeProps);
+  const [nodeRef, Container] = useNode(new Tone.Limiter(threshold), nodeProps);
 
   useEffect(() => {
     nodeRef.current.threshold.value = threshold;
   }, [threshold, nodeRef]);
 
   return (
-    <NodeContainer
-      title="Limiter"
-      onClickInput={() => onClickInput(nodeRef.current)}
-      onClickOutput={() => onClickOutput(nodeRef.current)}
-    >
+    <Container>
       <Slider
         min={-12}
         max={0}
@@ -25,7 +20,7 @@ const LimiterNode = ({ onClickInput, onClickOutput, ...nodeProps }) => {
         value={threshold}
         onChange={e => setThreshold(e.target.value)}
       />
-    </NodeContainer>
+    </Container>
   );
 };
 

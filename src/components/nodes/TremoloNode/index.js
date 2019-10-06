@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import { useNode } from '../../../hooks/node';
-import NodeContainer from '../../common/NodeContainer';
-import OutputInput from '../../common/OutputInput';
 import Slider from '../../common/Slider';
 
-const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
+const TremoloNode = nodeProps => {
   const [frequency, setFrequency] = useState(10);
   const [depth, setDepth] = useState(1);
 
-  const nodeRef = useNode(new Tone.Tremolo(frequency, depth).start(), inputs);
+  const [nodeRef, Container] = useNode(new Tone.Tremolo(frequency, depth).start(), nodeProps);
 
   useEffect(() => {
     nodeRef.current.frequency.value = frequency;
@@ -17,9 +15,7 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
   }, [nodeRef, frequency, depth]);
 
   return (
-    <NodeContainer title="Tremolo">
-      <OutputInput onClick={() => onClickInput(nodeRef.current)} isInput />
-      <OutputInput onClick={() => onClickOutput(nodeRef.current)} />
+    <Container title="Tremolo">
       <Slider
         min={1}
         max={10}
@@ -35,7 +31,7 @@ const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
         onChange={e => setDepth(e.target.value)}
         label="Depth"
       />
-    </NodeContainer>
+    </Container>
   );
 };
 

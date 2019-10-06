@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import NodeContainer from '../../common/NodeContainer';
 import { useNode } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
 import Slider from '../../common/Slider';
 
-const MasterNode = ({ onClickInput, ...nodeProps }) => {
-  console.log('node props', nodeProps);
+const MasterNode = nodeProps => {
   const [volume, setVolume] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
-  const nodeRef = useNode(Tone.Master, nodeProps);
+  const [nodeRef, Container] = useNode(Tone.Master, nodeProps);
 
   useEffect(() => {
     nodeRef.current.volume.value = volume;
@@ -17,10 +15,7 @@ const MasterNode = ({ onClickInput, ...nodeProps }) => {
   }, [volume, isMuted, nodeRef]);
 
   return (
-    <NodeContainer
-      title="Master"
-      onClickInput={() => onClickInput(nodeRef.current)}
-    >
+    <Container>
       <Checkbox
         checked={isMuted}
         onChange={() => setIsMuted(!isMuted)}
@@ -33,7 +28,7 @@ const MasterNode = ({ onClickInput, ...nodeProps }) => {
         onChange={e => setVolume(e.target.value)}
         label="Volume"
       />
-    </NodeContainer>
+    </Container>
   );
 };
 

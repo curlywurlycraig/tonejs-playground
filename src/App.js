@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Toolbar from './components/common/Toolbar';
+import Nodes from './components/nodes/Nodes';
 
 function App() {
   const [selectedNode, setSelectedNode] = useState(null);
@@ -13,14 +14,12 @@ function App() {
     ])
   };
 
-  const setSelectedNodeAndTone = (node, tone) => {
-    setSelectedNode(node);
-  };
-
   const connectSelectedNodeToNode = node => {
     if (selectedNode === null) {
       return;
     }
+
+    console.log('connecting selected node to node')
 
     setNodes(nodes.map(iterNode => {
       if (iterNode === node) {
@@ -33,24 +32,17 @@ function App() {
       }
     }));
 
-    setSelectedNode(null);
+    // setSelectedNode(null);
   };
 
-  const renderNodes = () => {
-    return nodes.map(node => node.render({
-      inputs: node.inputs,
-      onClickInput: tone => connectSelectedNodeToNode(node, tone),
-      onClickOutput: tone => setSelectedNodeAndTone(node, tone),
-      onToneRefChanged: toneRef => node.toneRef = toneRef,
-      xPos: node.xPos,
-      yPos: node.yPos
-    }))
+  const onNodeMoved = ({ node, x, y }) => {
+    console.log('node ', node, 'moved to ', x, y);
   };
 
   return (
     <div className="App">
       <Toolbar onAddNode={addNode} />
-      { renderNodes() }
+      <Nodes nodes={nodes} onNodeInputClicked={connectSelectedNodeToNode} onNodeOutputClicked={setSelectedNode} onNodeMoved={onNodeMoved} />
       {/*<svg viewBox></svg>*/}
     </div>
   );

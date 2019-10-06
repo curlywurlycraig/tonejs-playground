@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import NodeContainer from '../components/common/NodeContainer';
 
-export const useNode = (tone, { inputs, onToneRefChanged }) => {
+export const useNode = (tone, { inputs, onToneRefChanged, title, onClickOutput, onClickInput }) => {
   const [currentInputs, setCurrentInputs] = useState([]);
   const toneRef = useRef(tone);
 
@@ -30,5 +31,24 @@ export const useNode = (tone, { inputs, onToneRefChanged }) => {
     onToneRefChanged(toneRef)
   }, [onToneRefChanged, toneRef]);
 
-  return toneRef;
+  // Basically I want to avoid re-rendering the entire component tree every time a node is dragged a little bit.
+  // A good way to do this would be to store node positions in a context, to avoid triggering renders.
+  // Another possible way is to use React.memo. I need to decide this!
+  const Container = ({ children }) => (
+    <NodeContainer
+      title={title}
+      onClickOutput={() => onClickOutput(toneRef.current)}
+      onClickInput={() => onClickInput(toneRef.current)}
+    >
+      { children }
+    </NodeContainer>
+  );
+
+  useEffect(() => {
+    setContainer({ container: Container });
+  }, [onClickInput, onClickOutput, title]);
+
+  const [container, setContainer] = useState({ container: Container });
+
+  return [toneRef, container.container];
 };
