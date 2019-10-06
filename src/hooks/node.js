@@ -34,6 +34,10 @@ export const useNode = (tone, { inputs, onToneRefChanged, title, onClickOutput, 
   // Basically I want to avoid re-rendering the entire component tree every time a node is dragged a little bit.
   // A good way to do this would be to store node positions in a context, to avoid triggering renders.
   // Another possible way is to use React.memo. I need to decide this!
+  // The reason the nodes keep snapping back to their original position when anything changes is because
+  // the reference to onClickInput/Output keeps changing on re-render.
+  // I can avoid re-rendering the NodeContainer when this changes by making the function never change (don't use an arrow function in Nodes/index.js
+  // Or I can not worry about the re-render firing by having the x and y positions accessible via a context.
   const Container = ({ children }) => (
     <NodeContainer
       title={title}
