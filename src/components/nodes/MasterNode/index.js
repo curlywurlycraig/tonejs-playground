@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import NodeContainer from '../../common/NodeContainer';
-import { useNode } from '../../../hooks/node';
+import { useAutoconnectInputs } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
 import Slider from '../../common/Slider';
 
 const MasterNode = ({ inputs, onClickInput }) => {
   const [volume, setVolume] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
-  const nodeRef = useNode(Tone.Master, inputs);
+  const nodeRef = useAutoconnectInputs(Tone.Master, inputs);
 
   useEffect(() => {
     nodeRef.current.volume.value = volume;

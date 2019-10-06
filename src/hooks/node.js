@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useNode = (node, inputs) => {
+export const useAutoconnectInputs = (node, inputs) => {
   const [currentInputs, setCurrentInputs] = useState([]);
   const nodeRef = useRef(node);
 
   useEffect(() => {
-    console.log('connecting em up ', inputs);
     const newInputs = inputs.filter(input => !currentInputs.includes(input));
     const removedInputs = currentInputs.filter(
       input => !inputs.includes(input)

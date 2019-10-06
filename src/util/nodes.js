@@ -9,7 +9,9 @@ const createNode = (xPos, yPos, renderFunction) => {
     xPos,
     yPos,
     inputs: [],
+    outputs: [],
     render: renderFunction,
+    tone: null,
   };
 };
 

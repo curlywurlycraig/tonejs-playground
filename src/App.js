@@ -14,7 +14,6 @@ function App() {
   };
 
   const connectSelectedNodeToNode = node => {
-    console.log('collecting ', selectedNode, ' to ', node);
     if (selectedNode === null) {
       return;
     }
@@ -36,8 +35,9 @@ function App() {
   const renderNodes = () => {
     return nodes.map(node => node.render({
       inputs: node.inputs,
-      onClickInput: tone => connectSelectedNodeToNode(node),
-      onClickOutput: tone => { console.log('setting selected node ', tone); setSelectedNode(tone) },
+      onClickInput: () => connectSelectedNodeToNode(node),
+      onClickOutput: () => setSelectedNode(node),
+      onToneChanged: tone => node.tone = tone,
       xPos: node.xPos,
       yPos: node.yPos
     }))

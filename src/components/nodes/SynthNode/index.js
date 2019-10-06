@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Tone from 'tone';
 import NodeContainer from '../../common/NodeContainer';
-import { useNode } from '../../../hooks/node';
 import EnvelopeEditor from '../../common/EnvelopeEditor';
 import { useInput } from '../../../hooks/input';
 import OscillatorTypeSelector from '../../common/OscillatorTypeSelector';
 import styles from './styles.module.css';
 
 const SynthNode = ({ onClickOutput }) => {
-  const nodeRef = useNode(new Tone.Synth({ volume: -10 }), []);
+  const nodeRef = useRef(new Tone.Synth({ volume: -10 }));
 
   useInput(nodeRef);
 

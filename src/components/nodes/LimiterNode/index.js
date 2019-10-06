@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import { useNode } from '../../../hooks/node';
+import { useAutoconnectInputs } from '../../../hooks/node';
 import NodeContainer from '../../common/NodeContainer';
 import Slider from '../../common/Slider';
 
 const LimiterNode = ({ inputs, onClickInput, onClickOutput }) => {
   const [threshold, setThreshold] = useState(-12);
-  const nodeRef = useNode(new Tone.Limiter(threshold), inputs);
+  const nodeRef = useAutoconnectInputs(new Tone.Limiter(threshold), inputs);
 
   useEffect(() => {
     nodeRef.current.threshold.value = threshold;

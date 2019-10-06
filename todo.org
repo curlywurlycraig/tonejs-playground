@@ -14,3 +14,6 @@ In which case it should be controlled.
 * TODO Introduce eslint
 * TODO Add poly synth
 * TODO Add tremolo back in
+* TODO Add fun nodes 
+** "Missingno", a glitch blips, pops, and synth generator with a pic of missingno
+** An acid one

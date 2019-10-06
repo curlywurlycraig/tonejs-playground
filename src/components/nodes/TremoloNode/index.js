@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
-import { useNode } from '../../../hooks/node';
+import { useAutoconnectInputs } from '../../../hooks/node';
 import NodeContainer from '../../common/NodeContainer';
 import OutputInput from '../../common/OutputInput';
 import Slider from '../../common/Slider';
 
-const TremoloNode = ({ inputs, onClickInput, onClickOutput }) => {
+const TremoloNode = ({ inputs, onClickInput, onClickOutput, on }) => {
   const [frequency, setFrequency] = useState(10);
   const [depth, setDepth] = useState(1);
 
-  const nodeRef = useNode(new Tone.Tremolo(frequency, depth).start(), inputs);
+  const nodeRef = useAutoconnectInputs(new Tone.Tremolo(frequency, depth).start(), inputs);
+
+  useEffect(() => {
+    onNodeRefUpdated(nodeRef.current);
+  }, [onNodeRefUpdated, nodeRef]);
 
   useEffect(() => {
     nodeRef.current.frequency.value = frequency;
