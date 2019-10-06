@@ -13,8 +13,11 @@ function App() {
     ])
   };
 
+  const setSelectedNodeAndTone = (node, tone) => {
+    setSelectedNode(node);
+  };
+
   const connectSelectedNodeToNode = node => {
-    console.log('collecting ', selectedNode, ' to ', node);
     if (selectedNode === null) {
       return;
     }
@@ -36,8 +39,9 @@ function App() {
   const renderNodes = () => {
     return nodes.map(node => node.render({
       inputs: node.inputs,
-      onClickInput: tone => connectSelectedNodeToNode(node),
-      onClickOutput: tone => { console.log('setting selected node ', tone); setSelectedNode(tone) },
+      onClickInput: tone => connectSelectedNodeToNode(node, tone),
+      onClickOutput: tone => setSelectedNodeAndTone(node, tone),
+      onToneRefChanged: toneRef => node.toneRef = toneRef,
       xPos: node.xPos,
       yPos: node.yPos
     }))

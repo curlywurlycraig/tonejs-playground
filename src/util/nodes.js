@@ -10,6 +10,7 @@ const createNode = (xPos, yPos, renderFunction) => {
     yPos,
     inputs: [],
     render: renderFunction,
+    toneRef: null,
   };
 };
 
@@ -17,8 +18,8 @@ export const createMasterNode = (xPos, yPos) => {
   return createNode(
     xPos,
     yPos,
-    ({ inputs, onClickInput, onClickOutput, xPos, yPos }) => (
-      <MasterNode inputs={inputs} onClickInput={onClickInput} />
+    props => (
+      <MasterNode {...props} />
     )
   );
 };
@@ -27,8 +28,8 @@ export const createSynthNode = (xPos, yPos) => {
   return createNode(
     xPos,
     yPos,
-    ({ inputs, onClickInput, onClickOutput, xPos, yPos }) => (
-      <SynthNode onClickOutput={onClickOutput} />
+    props => (
+      <SynthNode {...props} />
     )
   );
 };
@@ -37,8 +38,8 @@ export const createDelayNode = (xPos, yPos) => {
   return createNode(
     xPos,
     yPos,
-    ({ inputs, onClickInput, onClickOutput, xPos, yPos }) => (
-      <DelayNode inputs={inputs} onClickInput={onClickInput} onClickOutput={onClickOutput} />
+    props => (
+      <DelayNode {...props} />
     )
   );
 };
@@ -47,8 +48,8 @@ export const createLimiterNode = (xPos, yPos) => {
   return createNode(
     xPos,
     yPos,
-    ({ inputs, onClickInput, onClickOutput, xPos, yPos }) => (
-      <LimiterNode inputs={inputs} onClickInput={onClickInput} onClickOutput={onClickOutput} />
+    props => (
+      <LimiterNode {...props} />
     )
   );
 };

@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Tone from 'tone';
 import { useNode } from '../../../hooks/node';
 import NodeContainer from '../../common/NodeContainer';
-import OutputInput from '../../common/OutputInput';
 import Slider from '../../common/Slider';
 
-const DelayNode = ({ inputs, onClickInput, onClickOutput }) => {
+const DelayNode = ({ onClickInput, onClickOutput, ...nodeProps }) => {
   const [time, setTime] = useState(0.2);
   const [feedback, setFeedback] = useState(0.5);
 
-  const nodeRef = useNode(new Tone.FeedbackDelay(time, feedback), inputs);
+  const nodeRef = useNode(new Tone.FeedbackDelay(time, feedback), nodeProps);
 
   useEffect(() => {
     nodeRef.current.delayTime.value = time;

@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useNode = (node, inputs) => {
+export const useNode = (tone, { inputs, onToneRefChanged }) => {
   const [currentInputs, setCurrentInputs] = useState([]);
-  const nodeRef = useRef(node);
+  const toneRef = useRef(tone);
 
   useEffect(() => {
-    console.log('connecting em up ', inputs);
     const newInputs = inputs.filter(input => !currentInputs.includes(input));
     const removedInputs = currentInputs.filter(
       input => !inputs.includes(input)
@@ -16,16 +15,20 @@ export const useNode = (node, inputs) => {
 
     if (newInputs.length || removedInputs.length) {
       newInputs.forEach(newInput => {
-        newInput.connect(nodeRef.current);
+        newInput.toneRef.current.connect(toneRef.current);
       });
 
       removedInputs.forEach(removedInput => {
-        removedInput.disconnect(nodeRef.current);
+        removedInput.toneRef.current.disconnect(toneRef.current);
       });
 
       setCurrentInputs([...intersectInputs, ...newInputs]);
     }
-  }, [inputs, currentInputs, nodeRef]);
+  }, [inputs, currentInputs, toneRef]);
 
-  return nodeRef;
+  useEffect(() => {
+    onToneRefChanged(toneRef)
+  }, [onToneRefChanged, toneRef]);
+
+  return toneRef;
 };

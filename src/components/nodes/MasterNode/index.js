@@ -5,10 +5,11 @@ import { useNode } from '../../../hooks/node';
 import Checkbox from '../../common/Checkbox';
 import Slider from '../../common/Slider';
 
-const MasterNode = ({ inputs, onClickInput }) => {
+const MasterNode = ({ onClickInput, ...nodeProps }) => {
+  console.log('node props', nodeProps);
   const [volume, setVolume] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
-  const nodeRef = useNode(Tone.Master, inputs);
+  const nodeRef = useNode(Tone.Master, nodeProps);
 
   useEffect(() => {
     nodeRef.current.volume.value = volume;

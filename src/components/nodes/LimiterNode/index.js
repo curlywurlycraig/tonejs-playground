@@ -4,9 +4,9 @@ import { useNode } from '../../../hooks/node';
 import NodeContainer from '../../common/NodeContainer';
 import Slider from '../../common/Slider';
 
-const LimiterNode = ({ inputs, onClickInput, onClickOutput }) => {
+const LimiterNode = ({ onClickInput, onClickOutput, ...nodeProps }) => {
   const [threshold, setThreshold] = useState(-12);
-  const nodeRef = useNode(new Tone.Limiter(threshold), inputs);
+  const nodeRef = useNode(new Tone.Limiter(threshold), nodeProps);
 
   useEffect(() => {
     nodeRef.current.threshold.value = threshold;
