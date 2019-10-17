@@ -14,3 +14,5 @@ In which case it should be controlled.
 * TODO Introduce eslint
 * TODO Add poly synth
 * TODO Add tremolo back in
+* TODO @Love2Code
+* TODO Screen reader support
